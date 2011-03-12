@@ -55,7 +55,9 @@ package
 				else play("Jump");
 				
 				super.update();
-				trace(numjumps);
+				//trace(numjumps);
+				//trace(x);
+				//trace(y);
 				
 		}
 	
