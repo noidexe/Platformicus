@@ -8,7 +8,13 @@ package
         private var ImgLevel:Class;
 		[Embed(source='../assets/level2.png')]
 		private var DataLevel:Class;
+		[Embed(source="../assets/leveltiles2.png")]
+        private var ImgLevel_bg:Class;
+		[Embed(source='../assets/level2-bg.png')]
+		private var DataLevel_bg:Class;
 		public var level:FlxTilemap;
+		public var level_bg:FlxTilemap;
+		
 		[Embed(source = '../assets/bg.png')]
 		public var ImgBG:Class;
 		
@@ -34,12 +40,19 @@ package
 			bgColor = 0xff000000;
 			
 			//Create level;
-			bg = new FlxSprite(0, 0, ImgBG);
-			add(bg);
-			bg.scrollFactor = new FlxPoint(0, 0);
+			//bg = new FlxSprite(0, 0, ImgBG);
+			//add(bg);
+			//bg.scrollFactor = new FlxPoint(0, 0);
+			
+			
+			level_bg = new FlxTilemap();
+			level_bg.auto = FlxTilemap.AUTO;
+			level_bg.loadMap(FlxTilemap.pngToCSV(DataLevel, false), ImgLevel_bg, 8, 8);
+			add(level_bg);
+			
 			level = new FlxTilemap();
 			level.auto = FlxTilemap.AUTO;
-			level.loadMap(FlxTilemap.pngToCSV(DataLevel,true), ImgLevel, 8,8);
+			level.loadMap(FlxTilemap.pngToCSV(DataLevel, true), ImgLevel, 8, 8);
 			add(level);
 			
 			txt_nohaynada = new FlxText(380, 60, 100, "Encontraste el area secreta!.. secretamente vacia..");
