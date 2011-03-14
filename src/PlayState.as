@@ -9,8 +9,12 @@ package
 		[Embed(source='../assets/level2.png')]
 		private var DataLevel:Class;
 		public var level:FlxTilemap;
+		[Embed(source = '../assets/bg.png')]
+		public var ImgBG:Class;
 		
+				
 		//---BEGIN CRAPPY CODE----
+		public var bg:FlxSprite;
 		public var lastx:Number;  // store player
 		public var lasty:Number;  // position in last frame
 		
@@ -30,6 +34,9 @@ package
 			bgColor = 0xff000000;
 			
 			//Create level;
+			bg = new FlxSprite(0, 0, ImgBG);
+			add(bg);
+			bg.scrollFactor = new FlxPoint(0, 0);
 			level = new FlxTilemap();
 			level.auto = FlxTilemap.AUTO;
 			level.loadMap(FlxTilemap.pngToCSV(DataLevel,true), ImgLevel, 8,8);
