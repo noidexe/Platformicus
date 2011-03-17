@@ -17,8 +17,8 @@ package
 			loadGraphic(ImgPlayer, true, true, 34, 40);
 			width = 24;
 			height = 32;
-			offset.x = 2;
-			offset.y = 1;
+			offset.x = 0;
+			offset.y = 2;
 			addAnimation("Idle", [0]);
 			addAnimation("Walk", [1, 2], 8);
 			addAnimation("Jump", [3]);

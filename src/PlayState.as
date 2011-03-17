@@ -54,7 +54,8 @@ package
 			level.loadMap(FlxTilemap.pngToCSV(DataLevel, true), ImgLevel, tileSize, tileSize);
 			add(level);
 			
-			txt_nohaynada = new FlxText(380, 60, 100, "Encontraste el area secreta!.. secretamente vacia..");
+			txt_nohaynada = new FlxText(760, 120, 200, "Encontraste el area secreta!.. secretamente vacia..");
+			txt_nohaynada.size = 16;
 			add(txt_nohaynada); //added before player cause it's part of the background
 			
 			//Create player (Cthulio)
@@ -70,17 +71,20 @@ package
 			add(souls);
 			
 			
-			txt_controls = new FlxText(195, 3, 200, "< > : move [space] : jump");
-			txt_score = new FlxText(1, 1, 200, "Score: " + score);
-			txt_time = new FlxText(1, 10, 200, "Time: " + time / 10);
+			txt_controls = new FlxText(390, 6, 400, "< > : move [space] : jump");
+			txt_score = new FlxText(2, 2, 400, "Score: " + score);
+			txt_time = new FlxText(2, 20, 400, "Time: " + time / 10);
 						
 			add(txt_controls);
 			add(txt_score);
 			add(txt_time);
 			
 			txt_score.scrollFactor = new FlxPoint(0, 0);
+			txt_score.size = 16;
 			txt_time.scrollFactor = new FlxPoint(0, 0);
+			txt_time.size = 16;
 			txt_controls.scrollFactor = new FlxPoint(0, 0);
+			txt_controls.size = 16;
 			
 			FlxG.follow(player, 5);
 			FlxG.followBounds(level.left, level.top, level.width, level.height); //so the camera doesn't scroll outside the map
