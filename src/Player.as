@@ -14,17 +14,17 @@ package
 		{
 			super(X);
 			//createGraphic(10, 12, 0xbbaaff11);
-			loadGraphic(ImgPlayer, true, true, 17, 20);
-			width = 12;
-			height = 16;
+			loadGraphic(ImgPlayer, true, true, 34, 40);
+			width = 24;
+			height = 32;
 			offset.x = 2;
 			offset.y = 1;
 			addAnimation("Idle", [0]);
 			addAnimation("Walk", [1, 2], 8);
 			addAnimation("Jump", [3]);
-			maxVelocity.x = 120;
-			maxVelocity.y = 300;
-			acceleration.y = 400;
+			maxVelocity.x = 240;
+			maxVelocity.y = 600;
+			acceleration.y = 800;
 			drag.x = maxVelocity.x * 2;
 			flicker(2);
 		}
@@ -56,7 +56,7 @@ package
 				
 				super.update();
 				//trace(numjumps);
-				//trace(x);
+				trace(x);
 				//trace(y);
 				
 		}
