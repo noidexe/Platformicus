@@ -49,11 +49,6 @@ package
 			level_bg.loadMap(FlxTilemap.pngToCSV(DataLevel, false), ImgLevel_bg, tileSize, tileSize);
 			add(level_bg);
 			
-			level = new FlxTilemap();
-			level.auto = FlxTilemap.AUTO;
-			level.loadMap(FlxTilemap.pngToCSV(DataLevel, true), ImgLevel, tileSize, tileSize);
-			add(level);
-			
 			txt_nohaynada = new FlxText(760, 120, 200, "Encontraste el area secreta!.. secretamente vacia..");
 			txt_nohaynada.size = 16;
 			add(txt_nohaynada); //added before player cause it's part of the background
@@ -64,6 +59,11 @@ package
 			lastx = player.x;
 			lasty = player.y;
 			
+			level = new FlxTilemap();
+			level.auto = FlxTilemap.AUTO;
+			level.loadMap(FlxTilemap.pngToCSV(DataLevel, true), ImgLevel, tileSize, tileSize);
+			add(level);
+			
 			//Create Souls
 			souls = new FlxGroup();
 			souls.add(createSoul(12, 5));
@@ -71,20 +71,20 @@ package
 			add(souls);
 			
 			
-			txt_controls = new FlxText(390, 6, 400, "< > : move [space] : jump");
-			txt_score = new FlxText(2, 2, 400, "Score: " + score);
-			txt_time = new FlxText(2, 20, 400, "Time: " + time / 10);
+			txt_controls = new FlxText(390/2, 6/2, 400/2, "< > : move [space] : jump");
+			txt_score = new FlxText(2/2, 2/2, 400/2, "Score: " + score);
+			txt_time = new FlxText(2/2, 20/2, 400/2, "Time: " + time / 10);
 						
 			add(txt_controls);
 			add(txt_score);
 			add(txt_time);
 			
 			txt_score.scrollFactor = new FlxPoint(0, 0);
-			txt_score.size = 16;
+			//txt_score.size = 16;
 			txt_time.scrollFactor = new FlxPoint(0, 0);
-			txt_time.size = 16;
+			//txt_time.size = 16;
 			txt_controls.scrollFactor = new FlxPoint(0, 0);
-			txt_controls.size = 16;
+			//txt_controls.size = 16;
 			
 			FlxG.follow(player, 5);
 			FlxG.followBounds(level.left, level.top, level.width, level.height); //so the camera doesn't scroll outside the map

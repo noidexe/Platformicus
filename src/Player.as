@@ -4,7 +4,7 @@ package
 	
 	public class Player extends FlxSprite
 	{
-		[Embed(source='../assets/ctulio.png')]
+		[Embed(source='../assets/ctulio-16.png')]
         private var ImgPlayer:Class;
 		
 		private var numjumps:Number = 0;
@@ -14,13 +14,13 @@ package
 		{
 			super(X);
 			//createGraphic(10, 12, 0xbbaaff11);
-			loadGraphic(ImgPlayer, true, true, 34, 40);
-			width = 24;
-			height = 32;
-			offset.x = 0;
-			offset.y = 2;
-			addAnimation("Idle", [0]);
-			addAnimation("Walk", [1, 2], 8);
+			loadGraphic(ImgPlayer, true, true, 40, 40);
+			width = 15;
+			height = 30;
+			offset.x = 5;
+			offset.y = 10;
+			addAnimation("Idle", [0,1,2,1], 3, true);
+			addAnimation("Walk", [3, 4,5,6,7,8,9,10,11,12,13,14], 18);
 			addAnimation("Jump", [3]);
 			maxVelocity.x = 240;
 			maxVelocity.y = 600;
