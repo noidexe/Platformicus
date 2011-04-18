@@ -14,14 +14,14 @@ package
 		{
 			super(X);
 			//createGraphic(10, 12, 0xbbaaff11);
-			loadGraphic(ImgPlayer, true, true, 40, 40);
+			loadGraphic(ImgPlayer, true, true, 60, 40);
 			width = 20;
 			height = 30;
-			offset.x = 10;
+			offset.x = 20;
 			offset.y = 10;
 			addAnimation("Idle", [0,1,2,1], 3, true);
 			addAnimation("Walk", [3, 4,5,6,7,8,9,10,11,12,13,14], 18);
-			addAnimation("Jump", [3]);
+			addAnimation("Jump", [15,16,17,18,19,20], 15);
 			maxVelocity.x = 240;
 			maxVelocity.y = 600;
 			acceleration.y = 800;
