@@ -1,6 +1,7 @@
 package  
 {
-	import org.flixel.FlxPreloader;
+	import org.flixel.*;
+	import org.flixel.system.FlxPreloader;
 	/**
 	 * ...
 	 * @author Noid
