@@ -4,7 +4,7 @@ package
 	
 	public class PlayState extends FlxState
 	{
-		[Embed(source='../assets/mariocoin.png')] public var ImgSoul:Class;
+		[Embed(source='../assets/soul2.png')] public var ImgSoul:Class;
 		[Embed(source="../assets/leveltiles-16.png")] private var ImgLevel:Class;
 		[Embed(source='../assets/level2.png')] private var DataLevel:Class;
 		[Embed(source="../assets/leveltiles-16-bg.png")] private var ImgLevel_bg:Class;
@@ -46,7 +46,7 @@ package
 			
 			level_bg = new FlxTilemap();
 			level_bg.auto = FlxTilemap.AUTO;
-			level_bg.loadMap(FlxTilemap.pngToCSV(DataLevel, false), ImgLevel_bg, tileSize, tileSize);
+			level_bg.loadMap(FlxTilemap.imageToCSV(DataLevel, false), ImgLevel_bg, tileSize, tileSize);
 			add(level_bg);
 			
 			txt_nohaynada = new FlxText(760, 120, 200, "Encontraste el area secreta!.. secretamente vacia..");
@@ -61,13 +61,15 @@ package
 			
 			level = new FlxTilemap();
 			level.auto = FlxTilemap.AUTO;
-			level.loadMap(FlxTilemap.pngToCSV(DataLevel, true), ImgLevel, tileSize, tileSize);
+			level.loadMap(FlxTilemap.imageToCSV(DataLevel, true), ImgLevel, tileSize, tileSize);
 			add(level);
 			
 			//Create Souls
 			souls = new FlxGroup();
 			souls.add(createSoul(12, 5));
-			souls.add(createSoul(250, 65));
+			souls.add(createSoul(85, 48));
+			souls.add(createSoul(87, 48));
+			souls.add(createSoul(89, 48));
 			add(souls);
 			
 			
@@ -93,7 +95,8 @@ package
 		
 		public function createSoul(soulx:uint, souly:uint):FlxSprite
 		{
-			return new FlxSprite(soulx * tileSize, souly * tileSize).loadGraphic(ImgSoul);
+			//return new FlxSprite(soulx * tileSize, souly * tileSize).loadGraphic(ImgSoul);
+			return new Soul(soulx * tileSize, souly * tileSize);
 			
 		}
 		override public function update():void

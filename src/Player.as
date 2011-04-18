@@ -27,6 +27,7 @@ package
 			acceleration.y = 800;
 			drag.x = maxVelocity.x * 2;
 			flicker(2);
+			//y = 770;
 		}
 		
 		override public function update():void
@@ -56,7 +57,7 @@ package
 				
 				super.update();
 				//trace(numjumps);
-				trace(x);
+				//trace(x);
 				//trace(y);
 				
 		}
