@@ -44,8 +44,7 @@ package
 			//bg.scrollFactor = new FlxPoint(0, 0);
 			
 			level_bg = new FlxTilemap();
-			level_bg.auto = FlxTilemap.AUTO;
-			level_bg.loadMap(FlxTilemap.imageToCSV(DataLevel, false), ImgLevel_bg, tileSize, tileSize);
+			level_bg.loadMap(FlxTilemap.imageToCSV(DataLevel, false), ImgLevel_bg, tileSize, tileSize, FlxTilemap.AUTO);
 			add(level_bg);
 			
 			txt_nohaynada = new FlxText(760, 120, 200, "Encontraste el area secreta!.. secretamente vacia..");
@@ -59,8 +58,7 @@ package
 			lasty = player.y;
 						
 			level = new FlxTilemap();
-			level.auto = FlxTilemap.AUTO;
-			level.loadMap(FlxTilemap.imageToCSV(DataLevel, true), ImgLevel, tileSize, tileSize);
+			level.loadMap(FlxTilemap.imageToCSV(DataLevel, true), ImgLevel, tileSize, tileSize, FlxTilemap.AUTO);
 			add(level);
 			
 			//Create Souls
