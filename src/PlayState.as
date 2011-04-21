@@ -113,9 +113,9 @@ package
 			}
 			else txt_score.color = 0xff0000; //if time is up just paint the score red.
 			
-			overlap(souls, player, getSoul);
+			FlxG.overlap(souls, player, getSoul);
 			
-			collide(player, level);
+			FlxG.collide(player, level);
 			
 			
 		}
