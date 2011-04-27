@@ -31,7 +31,8 @@ package
 		* @param	AnimName	The string name of the animation you want to play.
 		* @param	Force		Whether to force the animation to restart.
 		* @param	StartFrame	Which frame of the animation to start from if possible.
-		*/	
+		*/
+		
 		public function playFromFrame(AnimName:String,Force:Boolean=false, StartFrame:int=0):void
 		{
 			if (!Force && (_curAnim != null) && (AnimName == _curAnim.name)) return;
@@ -43,7 +44,7 @@ package
 			{
 				_curFrame = 0;
 			}*/
-			_caf = 0;
+			_curIndex = 0;
 			_frameTimer = 0;
 			var al:uint = _animations.length;
 			for(var i:uint = 0; i < al; i++)
@@ -55,11 +56,12 @@ package
 						finished = true;
 					else
 						finished = false;
-					_caf = _curAnim.frames[_curFrame];
-					calcFrame();
+					_curIndex = _curAnim.frames[_curFrame];
+					dirty = true;
 					return;
 				}
 			}
+			FlxG.log("WARNING: No animation called \""+AnimName+"\"");
 		}
 		
 		/*
