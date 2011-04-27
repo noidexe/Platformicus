@@ -36,17 +36,15 @@ package
 						
 		override public function create():void 
 		{
-			bgColor = 0xff000000;
+			FlxG.bgColor = 0xff000000;
 			
 			//Create level;
 			//bg = new FlxSprite(0, 0, ImgBG);
 			//add(bg);
 			//bg.scrollFactor = new FlxPoint(0, 0);
 			
-			
 			level_bg = new FlxTilemap();
-			level_bg.auto = FlxTilemap.AUTO;
-			level_bg.loadMap(FlxTilemap.imageToCSV(DataLevel, false), ImgLevel_bg, tileSize, tileSize);
+			level_bg.loadMap(FlxTilemap.imageToCSV(DataLevel, false), ImgLevel_bg, tileSize, tileSize, FlxTilemap.AUTO);
 			add(level_bg);
 			
 			txt_nohaynada = new FlxText(760, 120, 200, "Encontraste el area secreta!.. secretamente vacia..");
@@ -58,10 +56,9 @@ package
 			add(player);
 			lastx = player.x;
 			lasty = player.y;
-			
+						
 			level = new FlxTilemap();
-			level.auto = FlxTilemap.AUTO;
-			level.loadMap(FlxTilemap.imageToCSV(DataLevel, true), ImgLevel, tileSize, tileSize);
+			level.loadMap(FlxTilemap.imageToCSV(DataLevel, true), ImgLevel, tileSize, tileSize, FlxTilemap.AUTO);
 			add(level);
 			
 			//Create Souls
@@ -88,9 +85,10 @@ package
 			txt_controls.scrollFactor = new FlxPoint(0, 0);
 			//txt_controls.size = 16;
 			
-			FlxG.follow(player, 5);
-			FlxG.followBounds(level.left, level.top, level.width, level.height); //so the camera doesn't scroll outside the map
-			FlxU.setWorldBounds(level.left, level.top, level.width, level.height); //so the collision works in all the map
+			// Set camera
+			FlxG.camera.follow(player, 1);
+			FlxG.camera.setBounds(level.x, level.y, level.width, level.height); //so the camera doesn't scroll outside the map
+			FlxG.worldBounds = new FlxRect(level.x, level.y, level.width, level.height); //so the collision works in all the map
 		}
 		
 		public function createSoul(soulx:uint, souly:uint):FlxSprite
@@ -113,9 +111,9 @@ package
 			}
 			else txt_score.color = 0xff0000; //if time is up just paint the score red.
 			
-			FlxU.overlap(souls, player, getSoul);
+			FlxG.overlap(souls, player, getSoul);
 			
-			FlxU.collide(player, level);
+			FlxG.collide(player, level);
 			
 			
 		}

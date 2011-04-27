@@ -7,7 +7,6 @@ package
 		
 		public function level() 
 		{
-			
 		}
 		
 	}

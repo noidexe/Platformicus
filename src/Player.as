@@ -35,19 +35,19 @@ package
 			acceleration.x = 0;
 				if (!FlxG.keys.SPACE)
 					jumping = false;
-				if (onFloor)
+				if (isTouching(FLOOR))
 					numjumps = 0;
 				if (FlxG.keys.LEFT)
 					acceleration.x = -maxVelocity.x * 4;
 				if (FlxG.keys.RIGHT)
 					acceleration.x = maxVelocity.x * 4;
-				if (FlxG.keys.SPACE && (onFloor || numjumps < 2) && !jumping )
+				if (FlxG.keys.SPACE && (isTouching(FLOOR) || numjumps < 2) && !jumping )
 					{
 						velocity.y = -maxVelocity.y /1.5 ;
 						numjumps++;
 						jumping = true;
 					}
-				if (onFloor)
+				if (isTouching(FLOOR))
 				{
 				if (velocity.x == 0) play("Idle");
 				else if (velocity.x < 0 ) { facing = LEFT;  play("Walk"); }
