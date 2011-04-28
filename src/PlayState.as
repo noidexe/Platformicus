@@ -70,7 +70,7 @@ package
 			add(souls);
 			
 			
-			txt_controls = new FlxText(390/2, 6/2, 400/2, "< > : move [space] : jump");
+			txt_controls = new FlxText(550/2, 6/2, 400/2, "< > : move [space] : jump");
 			txt_score = new FlxText(2/2, 2/2, 400/2, "Score: " + score);
 			txt_time = new FlxText(2/2, 20/2, 400/2, "Time: " + time / 10);
 						
