@@ -47,13 +47,16 @@ package
 						numjumps++;
 						jumping = true;
 					}
-				if (isTouching(FLOOR))
+				if (isTouching(FLOOR))  //<code style="groncho">
 				{
 				if (velocity.x == 0) play("Idle");
-				else if (velocity.x < 0 ) { facing = LEFT;  play("Walk"); }
-				else if (velocity.x > 0 ) { facing = RIGHT; play("Walk"); }
+				else if (acceleration.x < 0 ) { facing = LEFT;  play("Walk"); }
+				else if (acceleration.x > 0 ) { facing = RIGHT; play("Walk"); }
 				}
-				else play("Jump");
+				else if (acceleration.x < 0 ) { facing = LEFT;  play("Jump"); }
+				else if (acceleration.x > 0 ) { facing = RIGHT;  play("Jump"); }
+				else play("Jump"); //</code>
+				
 				
 				super.update();
 				//trace(numjumps);

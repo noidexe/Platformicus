@@ -33,6 +33,9 @@ package
 		
 		public var time:uint =15000;  //Time to score as much as posible
 		public var txt_time:FlxText;
+		
+		public var version:String = "v0.4.3"
+		public var txt_version:FlxText;
 						
 		override public function create():void 
 		{
@@ -72,11 +75,14 @@ package
 			
 			txt_controls = new FlxText(550/2, 6/2, 400/2, "< > : move [space] : jump");
 			txt_score = new FlxText(2/2, 2/2, 400/2, "Score: " + score);
-			txt_time = new FlxText(2/2, 20/2, 400/2, "Time: " + time / 10);
+			txt_time = new FlxText(2 / 2, 20 / 2, 400 / 2, "Time: " + time / 10);
+			txt_version = new FlxText (640 / 2, 570 / 2, 400 / 2, "Version: " + version);
+			
 						
 			add(txt_controls);
 			add(txt_score);
 			add(txt_time);
+			add(txt_version);
 			
 			txt_score.scrollFactor = new FlxPoint(0, 0);
 			//txt_score.size = 16;
@@ -84,6 +90,7 @@ package
 			//txt_time.size = 16;
 			txt_controls.scrollFactor = new FlxPoint(0, 0);
 			//txt_controls.size = 16;
+			txt_version.scrollFactor = new FlxPoint(0, 0);
 			
 			// Set camera
 			FlxG.camera.follow(player, 1);
