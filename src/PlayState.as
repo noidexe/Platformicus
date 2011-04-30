@@ -34,7 +34,7 @@ package
 		public var time:uint =15000;  //Time to score as much as posible
 		public var txt_time:FlxText;
 		
-		public var version:String = "v0.4.3"
+		public var version:String = "v0.4.9"
 		public var txt_version:FlxText;
 						
 		override public function create():void 
