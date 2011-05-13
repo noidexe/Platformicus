@@ -23,11 +23,13 @@ package
 			addAnimation("Walk", [3, 4,5,6,7,8,9,10,11,12,13,14], 18);
 			addAnimation("Jump", [15,16,17,18,19,20], 15);
 			maxVelocity.x = 240;
-			maxVelocity.y = 600;
-			acceleration.y = 800;
+			maxVelocity.y = 400;
+			acceleration.y = 400;
 			drag.x = maxVelocity.x * 2;
 			flicker(2);
 			//y = 770;
+			FlxG.watch(this, "x");
+			FlxG.watch(this, "y");
 		}
 		
 		override public function update():void
@@ -58,7 +60,7 @@ package
 				else play("Jump"); //</code>
 				
 				
-				super.update();
+//				super.update();
 				//trace(numjumps);
 				//trace(x);
 				//trace(y);

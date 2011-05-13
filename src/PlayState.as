@@ -1,6 +1,7 @@
 package  
 {
 	import org.flixel.*;
+	import org.flixel.plugin.TimerManager;
 	
 	public class PlayState extends FlxState
 	{
@@ -31,7 +32,9 @@ package
 		public var score:uint = 0;
 		public var txt_score:FlxText;
 		
-		public var time:uint =15000;  //Time to score as much as posible
+		public var timemanager:TimerManager;
+		public var timer:FlxTimer;
+		//public var time:uint =15000;  //Time to score as much as posible
 		public var txt_time:FlxText;
 		
 		public var version:String = "v0.5.0"
@@ -40,11 +43,15 @@ package
 		override public function create():void 
 		{
 			FlxG.bgColor = 0xff000000;
-			
+			FlxG.watch(FlxG.mouse, "x", "Mouse X");
+			FlxG.watch(FlxG.mouse, "y", "Mouse Y");
 			//Create level;
 			//bg = new FlxSprite(0, 0, ImgBG);
 			//add(bg);
 			//bg.scrollFactor = new FlxPoint(0, 0);
+			timemanager = new TimerManager();
+			timer = new FlxTimer();
+			
 			
 			level_bg = new FlxTilemap();
 			level_bg.loadMap(FlxTilemap.imageToCSV(DataLevel, false), ImgLevel_bg, tileSize, tileSize, FlxTilemap.AUTO);
@@ -72,10 +79,12 @@ package
 			souls.add(createSoul(89, 48));
 			add(souls);
 			
-			
+			timemanager.active = true;
+			timemanager.add(timer);
+			timer.start(15, 1, onTimeUp);
 			txt_controls = new FlxText(550/2, 6/2, 400/2, "< > : move [space] : jump");
 			txt_score = new FlxText(2/2, 2/2, 400/2, "Score: " + score);
-			txt_time = new FlxText(2 / 2, 20 / 2, 400 / 2, "Time: " + time / 10);
+			txt_time = new FlxText(2 / 2, 20 / 2, 400 / 2, "Time: " + timer.timeLeft);
 			txt_version = new FlxText (640 / 2, 570 / 2, 400 / 2, "Version: " + version);
 			
 						
@@ -83,6 +92,9 @@ package
 			add(txt_score);
 			add(txt_time);
 			add(txt_version);
+			add(timemanager);
+			
+			
 			
 			txt_score.scrollFactor = new FlxPoint(0, 0);
 			//txt_score.size = 16;
@@ -107,14 +119,14 @@ package
 		override public function update():void
 		{
 			super.update();
-			if (time > 0)   //if time isn't up
+			if (timer.finished == false)   //if time isn't up
 			{	
-				score += FlxU.abs(int(player.x) - int(lastx)) + FlxU.abs(int(player.y) - int(lasty)); //score is the sum of deltaX and deltaY, the difference between current position and last frame's position
+				//score += FlxU.abs(int(player.x) - int(lastx)) + FlxU.abs(int(player.y) - int(lasty)); //score is the sum of deltaX and deltaY, the difference between current position and last frame's position
 				lastx = player.x;  // set lastx and lasty to current x and y
 				lasty = player.y;
-				time--; //decrease time left
-				txt_time.text = "Time: " + time / 100;
-				txt_score.text = "Score: " + score;
+				//time--; //decrease time left
+				txt_time.text = "Time: " + int(timer.timeLeft);
+			//	timemanager.update(); 
 			}
 			else txt_score.color = 0xff0000; //if time is up just paint the score red.
 			
@@ -122,13 +134,20 @@ package
 			
 			FlxG.collide(player, level);
 			
-			
 		}
 		
 		public function getSoul(Soul:FlxSprite, Player:FlxSprite):void 
 		{
 			Soul.kill();
-			trace("SCORE: " + (souls.countDead() * 100));
+			timer.time += 5;
+			score = souls.countDead() * 100;
+			txt_score.text = "Score: " + score;
+			FlxG.log("SCORE: " + (souls.countDead() * 100));
+		}
+		
+		public function onTimeUp(Timer:FlxTimer):void
+		{
+			FlxG.switchState(new PlayState());
 		}
 		
 	}

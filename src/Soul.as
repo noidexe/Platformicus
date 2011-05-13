@@ -6,10 +6,15 @@ package
 	public class Soul extends FlxSprite
 	{
 		[Embed(source = '../assets/soul2.png')] private var ImgSoul:Class;
+		private var initialY:Number;
 		
 		public function Soul(X:Number = 0, Y:Number = 0)
 		{
 			super (X, Y);
+			initialY = y;
+			//y += int(FlxG.random() * 5 );
+			velocity.y += int(FlxG.random() * 20 );
+			acceleration.y = 10;
 			loadGraphic(ImgSoul, true, false, 15, 15);
 			addAnimation("Idle", [0, 1, 2, 3, 4, 5, 6], 15, true);
 			playFromFrame("Idle", false, int(FlxG.random() * 10 % 7));
@@ -17,7 +22,15 @@ package
 		
 		override public function update():void
 		{
-			FlxG.log(_curFrame)
+			if (velocity.y > 10)
+			{
+				acceleration.y = -20;
+			}
+			else if (velocity.y < -10)
+			{
+				acceleration.y = +20;
+			}
+//			FlxG.log(_curFrame)
 //			super.update();
 			//trace(frame);
 		}
@@ -36,7 +49,7 @@ package
 		public function playFromFrame(AnimName:String,Force:Boolean=false, StartFrame:int=0):void
 		{
 			if (!Force && (_curAnim != null) && (AnimName == _curAnim.name)) return;
-			//if ( StartFrame <= _animations.length)
+			//if ( StartFrame <= _animations.length)  //For some reason _animations.lenght is never => StartFrame
 			{
 				_curFrame = StartFrame;
 			}
