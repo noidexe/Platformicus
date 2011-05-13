@@ -5,46 +5,47 @@ package
 	
 	public class PlayState extends FlxState
 	{
-		[Embed(source='../assets/soul2.png')] public var ImgSoul:Class;
+		[Embed(source='../assets/soul2.png')] private var ImgSoul:Class;
 		[Embed(source="../assets/leveltiles-16.png")] private var ImgLevel:Class;
 		[Embed(source='../assets/level2.png')] private var DataLevel:Class;
 		[Embed(source="../assets/leveltiles-16-bg.png")] private var ImgLevel_bg:Class;
-		public const tileSize:uint = 16;
-		public var level:FlxTilemap;
-		public var level_bg:FlxTilemap;
+		private const tileSize:uint = 16;
+		private var level:FlxTilemap;
+		private var level_bg:FlxTilemap;
 		
 		//[Embed(source = '../assets/bg.png')]
 		//public var ImgBG:Class;
 		
 				
 		//---BEGIN CRAPPY CODE----
-		public var bg:FlxSprite;
-		public var lastx:Number;  // store player
-		public var lasty:Number;  // position in last frame
+		private var bg:FlxSprite;
+		private var lastx:Number;  // store player
+		private var lasty:Number;  // position in last frame
 		
-		public var player:Player;
+		private var player:Player;
 		
-		public var souls:FlxGroup;
+		private var souls:FlxGroup;
 		
-		public var txt_controls:FlxText;
-		public var txt_nohaynada:FlxText;
+		private var txt_controls:FlxText;
+		private var txt_nohaynada:FlxText;
 		
-		public var score:uint = 0;
-		public var txt_score:FlxText;
+		private var score:uint = 0;
+		private var txt_score:FlxText;
 		
-		public var timemanager:TimerManager;
-		public var timer:FlxTimer;
-		//public var time:uint =15000;  //Time to score as much as posible
-		public var txt_time:FlxText;
+		private var timemanager:TimerManager;
+		private var timer:FlxTimer;
+		//private var time:uint =15000;  //Time to score as much as posible
+		private var txt_time:FlxText;
 		
-		public var version:String = "v0.5.0"
-		public var txt_version:FlxText;
+		private var version:String = "v0.5.0"
+		private var txt_version:FlxText;
 						
 		override public function create():void 
 		{
 			FlxG.bgColor = 0xff000000;
 			FlxG.watch(FlxG.mouse, "x", "Mouse X");
 			FlxG.watch(FlxG.mouse, "y", "Mouse Y");
+			FlxG.mouse.hide();
 			//Create level;
 			//bg = new FlxSprite(0, 0, ImgBG);
 			//add(bg);
@@ -82,7 +83,7 @@ package
 			timemanager.active = true;
 			timemanager.add(timer);
 			timer.start(15, 1, onTimeUp);
-			txt_controls = new FlxText(550/2, 6/2, 400/2, "< > : move [space] : jump");
+			txt_controls = new FlxText(550 / 2, 6 / 2, 400 / 2, "< > : move [space] : jump");
 			txt_score = new FlxText(2/2, 2/2, 400/2, "Score: " + score);
 			txt_time = new FlxText(2 / 2, 20 / 2, 400 / 2, "Time: " + timer.timeLeft);
 			txt_version = new FlxText (640 / 2, 570 / 2, 400 / 2, "Version: " + version);
@@ -110,7 +111,7 @@ package
 			FlxG.worldBounds = new FlxRect(level.x, level.y, level.width, level.height); //so the collision works in all the map
 		}
 		
-		public function createSoul(soulx:uint, souly:uint):FlxSprite
+		private function createSoul(soulx:uint, souly:uint):FlxSprite
 		{
 			//return new FlxSprite(soulx * tileSize, souly * tileSize).loadGraphic(ImgSoul);
 			return new Soul(soulx * tileSize, souly * tileSize);
@@ -118,25 +119,22 @@ package
 		}
 		override public function update():void
 		{
-			super.update();
-			if (timer.finished == false)   //if time isn't up
-			{	
-				//score += FlxU.abs(int(player.x) - int(lastx)) + FlxU.abs(int(player.y) - int(lasty)); //score is the sum of deltaX and deltaY, the difference between current position and last frame's position
-				lastx = player.x;  // set lastx and lasty to current x and y
-				lasty = player.y;
-				//time--; //decrease time left
+			
+			if (timer.loopsLeft == 1) //No actualices el timer si llego a 0 (por alguna razon se resetea igual aunque le puse 1 loop.
+			{
+				if (timer.timeLeft <= 6 ) txt_time.color = 0xff0000;
+				else txt_time.color = 0xffffff;
 				txt_time.text = "Time: " + int(timer.timeLeft);
-			//	timemanager.update(); 
 			}
-			else txt_score.color = 0xff0000; //if time is up just paint the score red.
 			
 			FlxG.overlap(souls, player, getSoul);
 			
 			FlxG.collide(player, level);
+			super.update();
 			
 		}
 		
-		public function getSoul(Soul:FlxSprite, Player:FlxSprite):void 
+		private function getSoul(Soul:FlxSprite, Player:FlxSprite):void 
 		{
 			Soul.kill();
 			timer.time += 5;
@@ -145,9 +143,14 @@ package
 			FlxG.log("SCORE: " + (souls.countDead() * 100));
 		}
 		
-		public function onTimeUp(Timer:FlxTimer):void
+		private function onTimeUp(Timer:FlxTimer):void
 		{
-			FlxG.switchState(new PlayState());
+			FlxG.fade(0xffffff, 0.5, onFadeFinished);
+		}
+		
+		private function onFadeFinished():void
+		{
+			FlxG.switchState(new FailState());
 		}
 		
 	}

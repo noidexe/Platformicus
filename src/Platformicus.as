@@ -9,7 +9,7 @@ package
 		
 		public function Platformicus() 
 		{
-			super(400, 300, PlayState, 1); //新しいＦｌｘＧａｍｅオブジェクトを
+			super(400, 300, MenuState, 1); //新しいＦｌｘＧａｍｅオブジェクトを
 			
 		}
 		
