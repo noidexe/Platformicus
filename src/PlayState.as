@@ -8,7 +8,8 @@ package
 		[Embed(source='../assets/soul2.png')] private var ImgSoul:Class;
 		[Embed(source="../assets/leveltiles-16.png")] private var ImgLevel:Class;
 		[Embed(source='../assets/level2.png')] private var DataLevel:Class;
-		[Embed(source="../assets/leveltiles-16-bg.png")] private var ImgLevel_bg:Class;
+		[Embed(source = "../assets/leveltiles-16-bg.png")] private var ImgLevel_bg:Class;
+		[Embed(source = '../assets/picksoul.mp3')] private var SndPickSoul:Class;
 		private const tileSize:uint = 16;
 		private var level:FlxTilemap;
 		private var level_bg:FlxTilemap;
@@ -37,7 +38,7 @@ package
 		//private var time:uint =15000;  //Time to score as much as posible
 		private var txt_time:FlxText;
 		
-		private var version:String = "v0.5.0"
+		private var version:String = "v0.6.3"
 		private var txt_version:FlxText;
 						
 		override public function create():void 
@@ -140,6 +141,7 @@ package
 			timer.time += 5;
 			score = souls.countDead() * 100;
 			txt_score.text = "Score: " + score;
+			FlxG.play(SndPickSoul);
 			FlxG.log("SCORE: " + (souls.countDead() * 100));
 		}
 		
