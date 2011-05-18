@@ -38,7 +38,7 @@ package
 		//private var time:uint =15000;  //Time to score as much as posible
 		private var txt_time:FlxText;
 		
-		private var version:String = "v0.6.3"
+		private var version:String = "v0.7.0"
 		private var txt_version:FlxText;
 						
 		override public function create():void 
@@ -79,11 +79,23 @@ package
 			souls.add(createSoul(85, 48));
 			souls.add(createSoul(87, 48));
 			souls.add(createSoul(89, 48));
+			souls.add(createSoul(95, 48));
+			souls.add(createSoul(89, 53));
+			souls.add(createSoul(89, 55));
+			souls.add(createSoul(94, 50));
+			souls.add(createSoul(87, 51));
+			souls.add(createSoul(86, 57));
+			souls.add(createSoul(1124 / 16, 1119 / 16));
+			souls.add(createSoul(1035 / 16, 1173 / 16));
+			souls.add(createSoul(1083 / 16, 1268 / 16));
+			souls.add(createSoul(1183 / 16, 1343 / 16));
+			
+			
 			add(souls);
 			
 			timemanager.active = true;
 			timemanager.add(timer);
-			timer.start(15, 1, onTimeUp);
+			timer.start(10, 1, onTimeUp);
 			txt_controls = new FlxText(550 / 2, 6 / 2, 400 / 2, "< > : move [space] : jump");
 			txt_score = new FlxText(2/2, 2/2, 400/2, "Score: " + score);
 			txt_time = new FlxText(2 / 2, 20 / 2, 400 / 2, "Time: " + timer.timeLeft);

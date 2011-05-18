@@ -10,10 +10,24 @@ package
 		private var numjumps:Number = 0;
 		private var jumping:Boolean = false;
 		
+		[Embed(source = '../assets/fly.mp3')] private var SndFly:Class;
+		private var SndFlyObj:FlxSound;
+		
+		[Embed(source = '../assets/steps.mp3')] private var SndStep1:Class;
+		[Embed(source = '../assets/steps2.mp3')] private var SndStep2: Class;
+		[Embed(source = '../assets/steps3.mp3')] private var SndStep3: Class;
+		private var SndSteps:FlxSound;
+		
 		public function Player(X:Number = 0)
 		{
 			super(X);
 			//createGraphic(10, 12, 0xbbaaff11);
+			SndFlyObj = new FlxSound();
+			SndFlyObj.loadEmbedded(SndFly, true);
+			
+			SndSteps = new FlxSound();
+			SndSteps.loadEmbedded(SndStep3, true);
+			
 			loadGraphic(ImgPlayer, true, true, 60, 40);
 			width = 20;
 			height = 30;
@@ -30,6 +44,7 @@ package
 			//y = 770;
 			FlxG.watch(this, "x");
 			FlxG.watch(this, "y");
+			jumping = true;
 		}
 		
 		override public function update():void
@@ -38,7 +53,7 @@ package
 				if (!FlxG.keys.SPACE)
 					jumping = false;
 				if (isTouching(FLOOR))
-					numjumps = 0;
+						numjumps = 0;
 				if (FlxG.keys.LEFT)
 					acceleration.x = -maxVelocity.x * 4;
 				if (FlxG.keys.RIGHT)
@@ -51,20 +66,22 @@ package
 					}
 				if (isTouching(FLOOR))  //<code style="groncho">
 				{
-				if (velocity.x == 0) play("Idle");
-				else if (acceleration.x < 0 ) { facing = LEFT;  play("Walk"); }
-				else if (acceleration.x > 0 ) { facing = RIGHT; play("Walk"); }
+				if (velocity.x == 0) { play("Idle"); SndSteps.stop(); SndFlyObj.stop(); }
+				else if (acceleration.x < 0 ) { facing = LEFT;  {play("Walk"); SndFlyObj.stop(); SndSteps.play();} }
+				else if (acceleration.x > 0 ) { facing = RIGHT; {play("Walk"); SndFlyObj.stop(); SndSteps.play();} }
 				}
-				else if (acceleration.x < 0 ) { facing = LEFT;  play("Jump"); }
-				else if (acceleration.x > 0 ) { facing = RIGHT;  play("Jump"); }
-				else play("Jump"); //</code>
+				else if (acceleration.x < 0 ) { facing = LEFT;  { play("Jump"); SndSteps.stop(); SndFlyObj.play(); } }
+				else if (acceleration.x > 0 ) { facing = RIGHT; { play("Jump"); SndSteps.stop(); SndFlyObj.play(); } }
+				else { play("Jump"); SndSteps.stop(); SndFlyObj.play(); } ; //</code>
 				
 				
-//				super.update();
-				//trace(numjumps);
-				//trace(x);
-				//trace(y);
-				
+		}
+		
+		override public function destroy():void
+		{
+			super.destroy();
+			SndFlyObj.stop();
+			SndSteps.stop();
 		}
 	
 	}
