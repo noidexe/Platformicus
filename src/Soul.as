@@ -5,23 +5,34 @@ package
 	
 	public class Soul extends FlxSprite
 	{
+		//Graphics
 		[Embed(source = '../assets/soul2.png')] private var ImgSoul:Class;
+		
+		//Sounds
+		[Embed(source = '../assets/picksoul.mp3')] private var SndPickSoul:Class;
+		
+		//Physics
 		private var initialY:Number;
 		
 		public function Soul(X:Number = 0, Y:Number = 0)
 		{
 			super (X, Y);
+			
+			//Physics setup
 			initialY = y;
-			//y += int(FlxG.random() * 5 );
 			velocity.y += int(FlxG.random() * 20 );
 			acceleration.y = 10;
+			
+			//Graphics setup
 			loadGraphic(ImgSoul, true, false, 15, 15);
 			addAnimation("Idle", [0, 1, 2, 3, 4, 5, 6], 15, true);
 			playFromFrame("Idle", false, int(FlxG.random() * 10 % 7));
+			
 		}
 		
 		override public function update():void
 		{
+			// Just float up and down
 			if (velocity.y > 10)
 			{
 				acceleration.y = -20;
@@ -30,9 +41,12 @@ package
 			{
 				acceleration.y = +20;
 			}
-//			FlxG.log(_curFrame)
-//			super.update();
-			//trace(frame);
+		}
+		
+		override public function kill():void
+		{
+			FlxG.play(SndPickSoul);
+			super.kill();
 		}
 		
 		/**
@@ -45,7 +59,6 @@ package
 		* @param	Force		Whether to force the animation to restart.
 		* @param	StartFrame	Which frame of the animation to start from if possible.
 		*/
-		
 		public function playFromFrame(AnimName:String,Force:Boolean=false, StartFrame:int=0):void
 		{
 			if (!Force && (_curAnim != null) && (AnimName == _curAnim.name)) return;
@@ -76,13 +89,6 @@ package
 			}
 			FlxG.log("WARNING: No animation called \""+AnimName+"\"");
 		}
-		
-		/*
-		  override public function kill()
-		  {
-		  }
-		 */
-		 
 		
 	}
 

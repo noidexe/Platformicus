@@ -10,6 +10,8 @@ package
 		private var playButton:FlxButton;
 		private var devButton:FlxButton;
 		
+		[Embed(source = '../assets/button.mp3')] private var SndButton:Class;
+		
 		[Embed(source = '../assets/Ctulio-Menu.jpg')] private var MenuBG:Class
 		private var BgMenu:FlxSprite;
 		[Embed(source = '../assets/cartridge.mp3')] private var SndCartridge:Class;
@@ -78,6 +80,7 @@ package
 		
 		protected function onOver():void
 		{
+			FlxG.play(SndButton);
 			//replace with button mouseOver soundeffect
 		}
 		

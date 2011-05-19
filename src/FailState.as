@@ -7,6 +7,8 @@ package
 	{
 		private var txtTitle:FlxText;
 		
+		[Embed(source = '../assets/button.mp3')] private var SndButton:Class;
+		
 		private var playButton:FlxButton;
 		private var menuButton:FlxButton;
 		
@@ -56,6 +58,7 @@ package
 		
 		protected function onOver():void
 		{
+			FlxG.play(SndButton);
 			//replace with button mouseOver soundeffect
 		}
 		
