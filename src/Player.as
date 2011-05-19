@@ -22,11 +22,11 @@ package
 		{
 			super(X);
 			//createGraphic(10, 12, 0xbbaaff11);
-			SndFlyObj = new FlxSound();
-			SndFlyObj.loadEmbedded(SndFly, true);
+			//SndFlyObj = new FlxSound();
+			//SndFlyObj.loadEmbedded(SndFly, true);
 			
-			SndSteps = new FlxSound();
-			SndSteps.loadEmbedded(SndStep3, true);
+			//SndSteps = new FlxSound();
+			//SndSteps.loadEmbedded(SndStep3, true);
 			
 			loadGraphic(ImgPlayer, true, true, 60, 40);
 			width = 20;
@@ -64,15 +64,80 @@ package
 						numjumps++;
 						jumping = true;
 					}
-				if (isTouching(FLOOR))  //<code style="groncho">
+				if (isTouching(FLOOR))  //<code style="groncho"> //Si esta tocando el piso
 				{
-				if (velocity.x == 0) { play("Idle"); SndSteps.stop(); SndFlyObj.stop(); }
-				else if (acceleration.x < 0 ) { facing = LEFT;  {play("Walk"); SndFlyObj.stop(); SndSteps.play();} }
-				else if (acceleration.x > 0 ) { facing = RIGHT; {play("Walk"); SndFlyObj.stop(); SndSteps.play();} }
+					if (velocity.x == 0) // Y no se esta moviendo
+					{ 
+						play("Idle");  //Repdoducir animacion idle
+						if (SndSteps)  //Parar sonido de pasos
+						{
+							SndSteps.stop();
+							SndSteps = null;
+						} 
+						if (SndFlyObj) //Parar sonido de vuelo
+						{
+							SndFlyObj.stop();
+							SndFlyObj = null;
+						}
+					}
+					else if (acceleration.x < 0 ) 
+					{ 
+						facing = LEFT;
+						play("Walk");
+						if (SndFlyObj)
+						{ 
+							SndFlyObj.stop();
+							SndFlyObj = null;
+						}
+						if(!SndSteps) SndSteps = FlxG.play(SndStep3,1,true);
+					}
+					else if (acceleration.x > 0 )
+					{ 
+						facing = RIGHT; 
+						play("Walk");
+						if (SndFlyObj)
+						{
+							SndFlyObj.stop();
+							SndFlyObj = null;
+						} 
+						if(!SndSteps) SndSteps = FlxG.play(SndStep3,1,true);
+					}
 				}
-				else if (acceleration.x < 0 ) { facing = LEFT;  { play("Jump"); SndSteps.stop(); SndFlyObj.play(); } }
-				else if (acceleration.x > 0 ) { facing = RIGHT; { play("Jump"); SndSteps.stop(); SndFlyObj.play(); } }
-				else { play("Jump"); SndSteps.stop(); SndFlyObj.play(); } ; //</code>
+				else if (acceleration.x < 0 )
+				{
+					facing = LEFT;
+					play("Jump");
+					if (SndSteps)
+					{
+						SndSteps.stop();
+						SndSteps = null;
+					}
+					if (!SndFlyObj)
+						SndFlyObj = FlxG.play(SndFly, 1, true);
+				}
+				else if (acceleration.x > 0 )
+				{
+					facing = RIGHT;
+					play("Jump");
+					if (SndSteps)
+					{
+						SndSteps.stop();
+						SndSteps = null;
+					}
+					if(!SndFlyObj)
+						SndFlyObj = FlxG.play(SndFly, 1, true);
+				}
+				else {
+					play("Jump");
+					if (SndSteps) 
+					{
+						SndSteps.stop(); 
+						SndSteps = null; 
+					}
+					if(!SndFlyObj)
+						SndFlyObj = FlxG.play(SndFly,1,true);
+						
+					} ; //</code>
 				
 				
 		}
@@ -80,8 +145,6 @@ package
 		override public function destroy():void
 		{
 			super.destroy();
-			SndFlyObj.stop();
-			SndSteps.stop();
 		}
 	
 	}
