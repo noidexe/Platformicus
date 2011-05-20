@@ -11,7 +11,7 @@ package
 		[Embed(source = '../assets/fly.mp3')] private var SndFly:Class;
 		private var SndFlyObj:FlxSound;
 		
-		[Embed(source = '../assets/steps3.mp3')] private var SndStep3: Class;
+		[Embed(source = '../assets/steps-sin.mp3')] private var SndStep3: Class;
 		private var SndSteps:FlxSound;
 		
 		//Physics
@@ -87,6 +87,7 @@ package
 			//Set Animation
 			if (isTouching(FLOOR)) //If is touching the floor..
 			{
+				if (justTouched(FLOOR)) FlxG.play(SndStep3) ; //play walk sound once if just touched the floor
 				if (velocity.x == 0) // ..and not moving
 				{ 
 					play("Idle");  //Play idle animation and stop sounds

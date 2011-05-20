@@ -48,8 +48,8 @@ package
 			add(devButton);
 			
 			
-			
-			FlxG.mouse.show();
+			FlxG.mouse.hide();
+			//FlxG.mouse.show();
 			
 		}
 		
@@ -60,7 +60,7 @@ package
 			if (BgMenu.y >= 0 && BgMenu.velocity.y != 0)
 			{ 
 				BgMenu.velocity.y = BgMenu.acceleration.y = BgMenu.y = 0;
-				FlxG.flash(0xffffffff, 1);
+				FlxG.flash(0xffffffff, 1, FlxG.mouse.show );
 				FlxG.play(SndCartridge);
 				playButton.visible = devButton.visible = true;				
 				}
