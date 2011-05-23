@@ -11,8 +11,8 @@ package
 		[Embed(source = "../assets/leveltiles-16-bg.png")] private var ImgLevel_bg:Class;
 		
 		//Level data
-		private const tileSize:uint = 16;
-		[Embed(source='../assets/level2.png')] private var DataLevel:Class;
+		private static const TILESIZE:uint = 16;
+		[Embed(source='../assets/level3.png')] private var DataLevel:Class;
 		private var level:FlxTilemap;
 		private var level_bg:FlxTilemap;
 		
@@ -26,14 +26,13 @@ package
 		private var txt_controls:FlxText;
 		private var txt_nohaynada:FlxText;
 		
-		private var version:String = "v0.7.5"
+		private static const VERSION:String = "v0.7.5"
 		private var txt_version:FlxText;
 		
 		private var score:uint = 0;
 		private var txt_score:FlxText;
 		
 		//Timer
-		private var timemanager:TimerManager;
 		private var timer:FlxTimer;
 		private var timeLimit:uint =15;
 		private var txt_time:FlxText;
@@ -76,7 +75,7 @@ package
 			txt_controls = new FlxText(550 / 2, 6 / 2, 400 / 2, "< > : move [space] : jump");
 			txt_score = new FlxText(2/2, 2/2, 400/2, "Score: " + score);
 			txt_time = new FlxText(2 / 2, 40 / 2, 400 / 2, "Time: " + timer.timeLeft);
-			txt_version = new FlxText (640 / 2, 570 / 2, 400 / 2, "Version: " + version);
+			txt_version = new FlxText (640 / 2, 570 / 2, 400 / 2, "Version: " + VERSION);
 			add(txt_controls);
 			add(txt_score);
 			add(txt_time);
@@ -95,10 +94,10 @@ package
 		 */
 		private function createLevel():void 
 		{
-			FlxG.bgColor = 0xff000000;
+			FlxG.bgColor = 0xFF000000;
 			
 			level_bg = new FlxTilemap();
-			level_bg.loadMap(FlxTilemap.imageToCSV(DataLevel, false), ImgLevel_bg, tileSize, tileSize, FlxTilemap.AUTO);
+			level_bg.loadMap(FlxTilemap.imageToCSV(DataLevel, true), ImgLevel_bg, TILESIZE, TILESIZE, FlxTilemap.AUTO);
 			add(level_bg);
 			
 			txt_nohaynada = new FlxText(760, 120, 200, "Encontraste el area secreta!.. secretamente vacia..");
@@ -106,7 +105,7 @@ package
 			add(txt_nohaynada); //added before player cause it's part of the background
 			
 			level = new FlxTilemap();
-			level.loadMap(FlxTilemap.imageToCSV(DataLevel, true), ImgLevel, tileSize, tileSize, FlxTilemap.AUTO);
+			level.loadMap(FlxTilemap.imageToCSV(DataLevel, false), ImgLevel, TILESIZE, TILESIZE, FlxTilemap.AUTO);
 			add(level);
 		}
 		
@@ -116,12 +115,7 @@ package
 		 */
 		private function createTimer():void 
 		{
-			timemanager = new TimerManager();
-			timer = new FlxTimer();
-			timemanager.active = true;
-			timemanager.add(timer);
-			timer.start(timeLimit, 1, onTimeUp);
-			add(timemanager);
+			timer = new FlxTimer().start(timeLimit, 1, onTimeUp);
 		}
 		
 		
@@ -141,7 +135,7 @@ package
 			souls.add(createSoul(94, 50));
 			souls.add(createSoul(87, 51));
 			souls.add(createSoul(86, 57));
-			souls.add(createSoul(1124 / 16, 1119 / 16));
+			souls.add(createSoul(110, 153));
 			souls.add(createSoul(1035 / 16, 1173 / 16));
 			souls.add(createSoul(1083 / 16, 1268 / 16));
 			souls.add(createSoul(1183 / 16, 1343 / 16));
@@ -156,7 +150,7 @@ package
 		 */
 		private function createSoul(soulx:uint, souly:uint):FlxSprite
 		{
-			return new Soul(soulx * tileSize, souly * tileSize);
+			return new Soul(soulx * TILESIZE, souly * TILESIZE);
 			
 		}
 		
@@ -165,7 +159,7 @@ package
 		 */
 		private function createPlayer():void 
 		{
-			player = new Player(1290);
+			player = new Player(98 * TILESIZE, 149 * TILESIZE);
 			add(player);
 		}
 		
@@ -175,9 +169,9 @@ package
 			
 			if (timer.loopsLeft == 1) //Do not update timer if it reached 0(it resets for some reason, even with loops = 1
 			{
-				if (timer.timeLeft <= 6 ) txt_time.color = 0xff0000; //Tint the timer red if there are less than 6 seconds remaining
-				else txt_time.color = 0xffffff;
-				txt_time.text = "Time: " + int(timer.timeLeft);
+				if (timer.timeLeft <= 6 ) txt_time.color = 0xFF0000; //Tint the timer red if there are less than 6 seconds remaining
+				else txt_time.color = 0xFFFFFF;
+				txt_time.text = "Time: " + int(timer.timeLeft); 
 			}
 			
 			//Check collisions
@@ -208,7 +202,7 @@ package
 		 */
 		private function onTimeUp(Timer:FlxTimer):void
 		{
-			FlxG.fade(0xffffff, 0.5, onFadeFinished);
+			FlxG.fade(0xFFFFFF, 0.5, onFadeFinished);
 		}
 		
 		/**

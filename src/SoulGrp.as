@@ -4,17 +4,17 @@ package
 	
 	public class SoulGrp extends FlxGroup
 	{
-		private var coinlist:Array;
+		private var soulList:Array;
 		
-		public function SoulGrp(thelist:Array) 
+		public function SoulGrp(soulList:Array) 
 		{
 			super();
-			coinlist = thelist;
+			this.soulList = soulList;
 		}
 		
 		override public function update()
 		{
-			trace(coinlist);
+			trace(this.soulList);
 		}
 		
 		

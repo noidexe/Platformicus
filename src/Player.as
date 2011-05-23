@@ -11,17 +11,17 @@ package
 		[Embed(source = '../assets/fly.mp3')] private var SndFly:Class;
 		private var SndFlyObj:FlxSound;
 		
-		[Embed(source = '../assets/steps-sin.mp3')] private var SndStep3: Class;
-		private var SndSteps:FlxSound;
+		[Embed(source = '../assets/steps-sin.mp3')] private var SndSteps: Class;
+		private var SndStepsObj:FlxSound;
 		
 		//Physics
 		private var numjumps:Number = 0;
 		private var jumping:Boolean = false;
 		
 		
-		public function Player(X:Number = 0)
+		public function Player(X:Number = 0, Y:Number = 0)
 		{
-			super(X);
+			super(X, Y);
 			
 			//Graphic setup
 			loadGraphic(ImgPlayer, true, true, 60, 40);
@@ -87,24 +87,24 @@ package
 			//Set Animation
 			if (isTouching(FLOOR)) //If is touching the floor..
 			{
-				if (justTouched(FLOOR)) FlxG.play(SndStep3) ; //play walk sound once if just touched the floor
+				if (justTouched(FLOOR)) FlxG.play(SndSteps) ; //play walk sound once if just touched the floor
 				if (velocity.x == 0) // ..and not moving
 				{ 
 					play("Idle");  //Play idle animation and stop sounds
-					if (SndSteps) { SndSteps.stop(); SndSteps = null; } 
+					if (SndStepsObj) { SndStepsObj.stop(); SndStepsObj = null; } 
 					if (SndFlyObj) { SndFlyObj.stop(); SndFlyObj = null; }
 				}
 				else // But if it IS moving
 				{
 					play("Walk"); //Play walk animation, stop fly sound and play walk sound
 					if (SndFlyObj) { SndFlyObj.stop(); SndFlyObj = null; }
-					if(!SndSteps) SndSteps = FlxG.play(SndStep3,1,true);
+					if(!SndStepsObj) SndStepsObj = FlxG.play(SndSteps,1,true);
 				}
 			}
 			else // but if its NOT touching the floor
 			{
 				play("Jump"); // Play fly animation, fly sound and stop walk sound
-				if (SndSteps) { SndSteps.stop(); SndSteps = null; }
+				if (SndStepsObj) { SndStepsObj.stop(); SndStepsObj = null; }
 				if(!SndFlyObj) SndFlyObj = FlxG.play(SndFly,1,true);
 			}
 		}
@@ -115,10 +115,12 @@ package
 			updateAnims();
 		}
 		
+		/*
 		override public function destroy():void
 		{
 			super.destroy();
 		}
+		*/
 	
 	}
 }

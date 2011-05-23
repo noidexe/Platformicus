@@ -11,15 +11,12 @@ package
 		//Sounds
 		[Embed(source = '../assets/picksoul.mp3')] private var SndPickSoul:Class;
 		
-		//Physics
-		private var initialY:Number;
 		
 		public function Soul(X:Number = 0, Y:Number = 0)
 		{
 			super (X, Y);
 			
 			//Physics setup
-			initialY = y;
 			velocity.y += int(FlxG.random() * 20 );
 			acceleration.y = 10;
 			
