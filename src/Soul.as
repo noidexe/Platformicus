@@ -10,6 +10,7 @@ package
 		
 		//Sounds
 		[Embed(source = '../assets/picksoul.mp3')] private var SndPickSoul:Class;
+//		private var SndPickSoulObj:FlxSound;
 		
 		
 		public function Soul(X:Number = 0, Y:Number = 0)
@@ -24,6 +25,8 @@ package
 			loadGraphic(ImgSoul, true, false, 15, 15);
 			addAnimation("Idle", [0, 1, 2, 3, 4, 5, 6], 15, true);
 			playFromFrame("Idle", false, int(FlxG.random() * 10 % 7));
+			
+			//SndPickSoulObj = new FlxSound().loadEmbedded(SndPickSoul,false,true);
 			
 		}
 		
@@ -42,7 +45,7 @@ package
 		
 		override public function kill():void
 		{
-			FlxG.play(SndPickSoul);
+			FlxG.play(SndPickSoul); //SndPickSoulObj.play();
 			super.kill();
 		}
 		

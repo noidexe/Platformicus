@@ -32,8 +32,8 @@ package
 			
 			//Animation setup
 			addAnimation("Idle", [0,1,2,1], 3, true);
-			addAnimation("Walk", [3, 4,5,6,7,8,9,10,11,12,13,14], 18);
-			addAnimation("Jump", [15,16,17,18,19,20], 15);
+			addAnimation("Walk", [3, 4,5,6,7,8,9,10,11,12,13,14], 14);
+			addAnimation("Jump", [15,16,17,18,19,20], 10);
 			
 			//Physics setup
 			maxVelocity.x = 240;
@@ -44,11 +44,13 @@ package
 			
 			//Misc setup
 			flicker(2); //flickers for two seconds when the level starts
+			SndFlyObj = FlxG.loadSound(SndFly);
+			SndStepsObj = FlxG.loadSound(SndSteps);
 			
 			//Debbuger setup
 			FlxG.watch(this, "x");
 			FlxG.watch(this, "y");
-			
+			FlxG.watch(SndStepsObj, "active");
 		}
 		
 		/**
@@ -87,25 +89,21 @@ package
 			//Set Animation
 			if (isTouching(FLOOR)) //If is touching the floor..
 			{
-				if (justTouched(FLOOR)) FlxG.play(SndSteps) ; //play walk sound once if just touched the floor
+				if (justTouched(FLOOR)) SndStepsObj.play(); //play walk sound once if just touched the floor
 				if (velocity.x == 0) // ..and not moving
 				{ 
 					play("Idle");  //Play idle animation and stop sounds
-					if (SndStepsObj) { SndStepsObj.stop(); SndStepsObj = null; } 
-					if (SndFlyObj) { SndFlyObj.stop(); SndFlyObj = null; }
 				}
 				else // But if it IS moving
 				{
 					play("Walk"); //Play walk animation, stop fly sound and play walk sound
-					if (SndFlyObj) { SndFlyObj.stop(); SndFlyObj = null; }
-					if(!SndStepsObj) SndStepsObj = FlxG.play(SndSteps,1,true);
+   					SndStepsObj.play();
 				}
 			}
 			else // but if its NOT touching the floor
 			{
 				play("Jump"); // Play fly animation, fly sound and stop walk sound
-				if (SndStepsObj) { SndStepsObj.stop(); SndStepsObj = null; }
-				if(!SndFlyObj) SndFlyObj = FlxG.play(SndFly,1,true);
+				SndFlyObj.play();
 			}
 		}
 		
