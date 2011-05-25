@@ -10,13 +10,13 @@ package
 		
 		//Sounds
 		[Embed(source = '../assets/picksoul.mp3')] private var SndPickSoul:Class;
-//		private var SndPickSoulObj:FlxSound;
-		
+		public var initialY:Number; //Used by the Level Editor
 		
 		public function Soul(X:Number = 0, Y:Number = 0)
 		{
 			super (X, Y);
 			
+			initialY = Y;
 			//Physics setup
 			velocity.y += int(FlxG.random() * 20 );
 			acceleration.y = 10;

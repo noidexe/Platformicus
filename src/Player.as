@@ -17,6 +17,7 @@ package
 		//Physics
 		private var numjumps:Number = 0;
 		private var jumping:Boolean = false;
+		private var haspaused:Boolean = false;
 		
 		
 		public function Player(X:Number = 0, Y:Number = 0)
@@ -48,9 +49,10 @@ package
 			SndStepsObj = FlxG.loadSound(SndSteps);
 			
 			//Debbuger setup
-			FlxG.watch(this, "x");
-			FlxG.watch(this, "y");
+			//FlxG.watch(this, "x");
+			//FlxG.watch(this, "y");
 			FlxG.watch(SndStepsObj, "active");
+			FlxG.watch(SndStepsObj, "exists");
 		}
 		
 		/**
@@ -97,13 +99,15 @@ package
 				else // But if it IS moving
 				{
 					play("Walk"); //Play walk animation, stop fly sound and play walk sound
-   					SndStepsObj.play();
+   					SndStepsObj.play(); 
+					SndStepsObj.active = false;
 				}
 			}
 			else // but if its NOT touching the floor
 			{
 				play("Jump"); // Play fly animation, fly sound and stop walk sound
 				SndFlyObj.play();
+				SndFlyObj.active = false; //fixes mute after pause
 			}
 		}
 		
