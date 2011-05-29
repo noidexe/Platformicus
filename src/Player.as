@@ -100,14 +100,12 @@ package
 				{
 					play("Walk"); //Play walk animation, stop fly sound and play walk sound
    					SndStepsObj.play(); 
-					SndStepsObj.active = false;
 				}
 			}
 			else // but if its NOT touching the floor
 			{
 				play("Jump"); // Play fly animation, fly sound and stop walk sound
 				SndFlyObj.play();
-				SndFlyObj.active = false; //fixes mute after pause
 			}
 		}
 		

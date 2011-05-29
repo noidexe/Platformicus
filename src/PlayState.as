@@ -48,7 +48,7 @@ package
 		private var txt_controls:FlxText;
 		private var txt_nohaynada:FlxText;
 		
-		private static const VERSION:String = "v0.8.0"
+		private static const VERSION:String = "v0.9.0"
 		private var txt_version:FlxText;
 		
 		private var score:uint = 0;
@@ -56,7 +56,7 @@ package
 		
 		//Timer
 		private var timer:FlxTimer;
-		private var timeLimit:uint = EDITOR_MODE ? 0: 15;
+		private var timeLimit:uint = EDITOR_MODE ? 0: 10;
 		private var txt_time:FlxText;
 		
 		
@@ -65,6 +65,8 @@ package
 			//Debbuger setup
 			FlxG.watch(FlxG.mouse, "x", "Mouse X");
 			FlxG.watch(FlxG.mouse, "y", "Mouse Y");
+			
+			Registry.enemiesKilledThisGame = 0;
 			
 			createLevel();
 			createPlayer();
@@ -219,6 +221,7 @@ package
 			Soul.kill();
 			timer.time += 5;
 			score += 10;
+			Registry.enemiesKilledThisGame = score;
 			txt_score.text = "Score: " + score;
 		}
 		

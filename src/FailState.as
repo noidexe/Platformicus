@@ -1,6 +1,8 @@
 package
 {
 
+	import flash.ui.Mouse;
+	import mochi.as3.*;
 	import org.flixel.*;
 
 	public class FailState extends FlxState
@@ -36,14 +38,21 @@ package
 			playButton.label.textfieldWidth = 100;
 			add(playButton);
 			
-			
 			FlxG.mouse.show();
+			Mouse.show();
+			
+			var o:Object = { n: [7, 13, 9, 15, 5, 9, 6, 14, 8, 2, 10, 12, 3, 5, 0, 0], f: function (i:Number,s:String):String { if (s.length == 16) return s; return this.f(i+1,s + this.n[i].toString(16));}};
+			var boardID:String = o.f(0, "");
+			var playerscore:Number = Registry.enemiesKilledThisGame;
+			
+			MochiScores.showLeaderboard({boardID: boardID, score: playerscore, scoreMessage: { highscore: "Beat my highscore of ${highscore} in ${game}!", latestscore: "Hice ${score} puntos en ${game}!", gameinvite: "Come play ${game}!" }});
 			
 		}
 		
 		override public function update():void
 		{
-			super.update();	
+			Mouse.show();
+			super.update();
 		}
 		
 		protected function onBack():void
