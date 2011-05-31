@@ -1,6 +1,7 @@
 package
 {
 
+	import flash.ui.Mouse;
 	import org.flixel.*;
 
 	public class MenuState extends FlxState
@@ -12,7 +13,7 @@ package
 		
 		[Embed(source = '../assets/button.mp3')] private var SndButton:Class;
 		
-		[Embed(source = '../assets/Ctulio-Menu.jpg')] private var MenuBG:Class
+		[Embed(source = '../assets/Cthulio-Menu.jpg')] private var MenuBG:Class
 		private var BgMenu:FlxSprite;
 		[Embed(source = '../assets/cartridge.mp3')] private var SndCartridge:Class;
 		
@@ -43,6 +44,7 @@ package
 			
 			
 			FlxG.mouse.hide();
+			Mouse.hide();
 			
 		}
 		

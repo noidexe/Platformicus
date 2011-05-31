@@ -18,8 +18,8 @@ package
 			
 			initialY = Y;
 			//Physics setup
-			velocity.y += int(FlxG.random() * 20 );
-			acceleration.y = 10;
+			if(!Registry.EDITOR_MODE) velocity.y += int(FlxG.random() * 10 + 10);
+			//acceleration.y = 10;
 			
 			//Graphics setup
 			loadGraphic(ImgSoul, true, false, 15, 15);
@@ -32,14 +32,10 @@ package
 		
 		override public function update():void
 		{
-			// Just float up and down
-			if (velocity.y > 10)
+			if (!Registry.EDITOR_MODE) 
 			{
-				acceleration.y = -20;
-			}
-			else if (velocity.y < -10)
-			{
-				acceleration.y = +20;
+				if (y < initialY) velocity.y++;
+				if (y > initialY) velocity.y--;
 			}
 		}
 		
