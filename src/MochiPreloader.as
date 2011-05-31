@@ -44,7 +44,6 @@ package {
 
             opts.clip = this;
             if(Registry.EDITOR_MODE) opts.skip = true; //Don't play the ads if in editor mode
-
             MochiAd.showPreGameAd(opts);
         }
 

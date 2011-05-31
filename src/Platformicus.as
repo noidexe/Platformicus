@@ -19,7 +19,7 @@ package
 			{
 				game_width = 400;
 				game_height = 300;
-				load_state = MenuState;
+				load_state = LangSelection;
 				addEventListener(Event.ADDED_TO_STAGE, init);
 			}
 			super(game_width, game_height, load_state, 1); //新しいＦｌｘＧａｍｅオブジェクトを

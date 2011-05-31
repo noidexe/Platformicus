@@ -22,7 +22,7 @@ package
 			//acceleration.y = 10;
 			
 			//Graphics setup
-			loadGraphic(ImgSoul, true, false, 15, 15);
+			loadGraphic(ImgSoul, true, false, 15, 15,true);
 			addAnimation("Idle", [0, 1, 2, 3, 4, 5, 6], 15, true);
 			playFromFrame("Idle", false, int(FlxG.random() * 10 % 7));
 			

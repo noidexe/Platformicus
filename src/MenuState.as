@@ -26,7 +26,7 @@ package
 			BgMenu.acceleration.y = 500;
 			add(BgMenu);
 			
-			playButton = new FlxButton(40, FlxG.height / 2 -25, "Jugar", onPlay);
+			playButton = new FlxButton(40, FlxG.height / 2 -25, GameText.play , onPlay);
 			playButton.setSounds(SndButton);
 			playButton.color = 0xFF8E5195;
 			playButton.label.color = 0xFFFFFFFF;
@@ -34,7 +34,7 @@ package
 			playButton.visible = false;
 			add(playButton);
 			
-			devButton = new FlxButton(40, FlxG.height / 2 + 25, "Mi web", onSite);
+			devButton = new FlxButton(40, FlxG.height / 2 + 25, GameText.myWeb , onSite);
 			devButton.setSounds(SndButton);
 			devButton.color = playButton.color;
 			devButton.label.color = playButton.label.color;

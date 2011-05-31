@@ -18,19 +18,20 @@ package
 		{
 			FlxG.bgColor = 0xFF440044;
 			
-			txtTitle = new FlxText(FlxG.width / 2-50, FlxG.height / 4 , 100, "SONASTE", false);
+			txtTitle = new FlxText(FlxG.width / 2-50, FlxG.height / 4 , 100, GameText.youreDead, false);
 			txtTitle.alignment = "center";
 			txtTitle.scale = new FlxPoint(2, 2);
 			add(txtTitle);
 			
-			menuButton = new FlxButton(FlxG.width / 2 - 40, FlxG.height / 3 + 60, "Volver al Menu", onBack);
+			menuButton = new FlxButton(FlxG.width / 2 - 40, FlxG.height / 3 + 60, GameText.toMenu, onBack);
 			menuButton.setSounds(SndButton);
 			menuButton.color = 0xFFAA00AA;
 			menuButton.label.color = 0xFFFFFFFF;
-			menuButton.scale = new FlxPoint(1.2, 1.2);
+			menuButton.scale = new FlxPoint(1.5, 1.5);
+			menuButton.label.textfieldWidth = 100;
 			add(menuButton);
 			
-			playButton = new FlxButton(FlxG.width / 2 - 40, FlxG.height / 3 + 100, "Jugar de Nuevo", onPlay);
+			playButton = new FlxButton(FlxG.width / 2 - 40, FlxG.height / 3 + 100, GameText.playAgain, onPlay);
 			playButton.setSounds(SndButton);
 			playButton.color = menuButton.color;
 			playButton.label.color = menuButton.label.color;
