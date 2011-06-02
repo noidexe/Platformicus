@@ -8,7 +8,10 @@ package
 		[Embed(source='../assets/ctulio-16.png')] private var ImgPlayer:Class;
 		
 		//Sound
-		[Embed(source = '../assets/fly.mp3')] private var SndFly:Class;
+		[Embed(source = '../assets/fly-hipitch.mp3')] private var SndGlide:Class;
+		private var SndGlideObj:FlxSound;
+		
+		[Embed(source = '../assets/flyfast-hipitch.mp3')] private var SndFly:Class;
 		private var SndFlyObj:FlxSound;
 		
 		[Embed(source = '../assets/steps-sin.mp3')] private var SndSteps: Class;
@@ -34,7 +37,10 @@ package
 			//Animation setup
 			addAnimation("Idle", [0,1,2,1], 3, true);
 			addAnimation("Walk", [3, 4,5,6,7,8,9,10,11,12,13,14], 14);
-			addAnimation("Jump", [15,16,17,18,19,20], 10);
+			addAnimation("Jump", [15, 16, 17, 18, 19, 20], 24);
+			addAnimation("Glide", [15, 16, 17, 18, 19, 20], 12);
+			
+			
 			
 			//Physics setup
 			maxVelocity.x = 240;
@@ -45,8 +51,9 @@ package
 			
 			//Misc setup
 			flicker(2); //flickers for two seconds when the level starts
-			SndFlyObj = FlxG.loadSound(SndFly);
+			SndGlideObj = FlxG.loadSound(SndGlide);
 			SndStepsObj = FlxG.loadSound(SndSteps);
+			SndFlyObj = FlxG.loadSound(SndFly);
 			
 			//Debbuger setup
 			//FlxG.watch(this, "x");
@@ -104,8 +111,18 @@ package
 			}
 			else // but if its NOT touching the floor
 			{
-				play("Jump"); // Play fly animation, fly sound and stop walk sound
-				SndFlyObj.play();
+				if (velocity.y <= -20 )
+				{
+					play("Jump"); // Play fly animation, fly sound and stop walk sound
+					SndGlideObj.stop();	
+					SndFlyObj.play();	
+				}
+				else
+				{
+					play("Glide"); // Play fly animation, fly sound and stop walk sound
+					SndFlyObj.stop();
+					SndGlideObj.play();	
+				}
 			}
 		}
 		

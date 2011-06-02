@@ -56,7 +56,7 @@ package
 		
 		//Timer
 		private var timer:FlxTimer;
-		private var timeLimit:uint = Registry.EDITOR_MODE ? 0: 10;
+		private var timeLimit:uint = Registry.EDITOR_MODE ? 0: 15;
 		private var txt_time:FlxText;
 		
 		
@@ -123,7 +123,7 @@ package
 		private function createGUI():void 
 		{
 			txt_controls = new FlxText(550 / 2, 6 / 2, 400 / 2, "< > : move [space] : jump");
-			txt_score = new FlxText(2/2, 2/2, 400/2, "Score: " + score);
+			txt_score = new FlxText(2/2, 2/2, 400/2, "Souls: " + score);
 			txt_time = new FlxText(2 / 2, 40 / 2, 400 / 2, "Time: " + timer.timeLeft);
 			txt_version = new FlxText (640 / 2, 570 / 2, 400 / 2, "Version: " + Registry.VERSION);
 			if (!Registry.EDITOR_MODE)
@@ -189,6 +189,7 @@ package
 				souls.add(createSoul(Value[0], Value[1]));
 			}
 			add(souls);
+			Registry.amountOfSouls = souls.countLiving();
 		}
 		
 		/**
@@ -221,10 +222,10 @@ package
 		private function getSoul(Soul:FlxSprite, Player:FlxSprite):void 
 		{
 			Soul.kill();
-			timer.time += 5;
-			score += 10;
-			Registry.soulsCollectedThisGame = score;
-			txt_score.text = "Score: " + score;
+			timer.time += 4;
+			score++;
+			Registry.soulsCollectedThisGame += 10;
+			txt_score.text = "Souls: " + score + " / " + Registry.amountOfSouls;
 		}
 		
 		private function removeSoul(Soul:FlxSprite, Pointer:FlxSprite):void

@@ -18,7 +18,7 @@ package
 		{
 			FlxG.bgColor = 0xFF440044;
 			
-			txtTitle = new FlxText(FlxG.width / 2-50, FlxG.height / 4 , 100, GameText.youreDead, false);
+			txtTitle = new FlxText(FlxG.width / 2-50, FlxG.height / 4 , 100, (Registry.soulsCollectedThisGame == Registry.amountOfSouls ? GameText.youWin: GameText.youreDead), false);
 			txtTitle.alignment = "center";
 			txtTitle.scale = new FlxPoint(2, 2);
 			add(txtTitle);

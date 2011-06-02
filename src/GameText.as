@@ -12,6 +12,7 @@ package
 		private static var _toMenu:Array = ["Volver al Menú", "Back to Menu", "Zurück zum Menü", "Voltar ao Menu"];
 		private static var _myWeb:Array = ["Mi Web", "My Website", "Meine Website", "O Meu Site"];
 		private static var _youreDead:Array = ["SONASTE", "OWNED", "KAPUT", "MORTO"];
+		private static var _youWin:Array = ["PERFECTO", "PERFECT", "PERFEKT", "PERFEITO"];
 		
 		public static function get play():String
 		{
@@ -123,6 +124,29 @@ package
 				break;
 				default:
 					return _youreDead[0];
+				break;
+			}
+			
+		}
+		
+		public static function get youWin():String
+		{
+			switch (Registry.language) 
+			{
+				case "es":
+				return _youWin[0];
+				break;
+				case "en":
+				return _youWin[1];
+				break;
+				case "de":
+				return _youWin[2];
+				break;
+				case "pt":
+				return _youWin[3];
+				break;
+				default:
+					return _youWin[0];
 				break;
 			}
 			
