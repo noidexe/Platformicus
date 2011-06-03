@@ -5,7 +5,7 @@ package
         public class Registry
         {
 				public static const EDITOR_MODE:Boolean = false;
-				public static const VERSION:String = "1.1";
+				public static const VERSION:String = "1.1.2";
                 //public static var stage:Stage;
                 //public static var player:Player;
                 //public static var previousLevel:int;

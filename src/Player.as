@@ -72,9 +72,9 @@ package
 				jumping = false;
 			if (isTouching(FLOOR))
 					numjumps = 0;  //Resets jump count. Used for double-jumping
-			if (FlxG.keys.LEFT)
+			if (FlxG.keys.LEFT || FlxG.keys.A)
 				acceleration.x = -maxVelocity.x * 4;
-			if (FlxG.keys.RIGHT)
+			if (FlxG.keys.RIGHT || FlxG.keys.D)
 				acceleration.x = maxVelocity.x * 4;
 			if (FlxG.keys.SPACE && (isTouching(FLOOR) || numjumps < 2) && !jumping )  //Checks if its on the floor or if it isn't double-jumping
 				{
