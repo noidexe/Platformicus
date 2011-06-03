@@ -11,7 +11,7 @@ package
 		private static var _playAgain:Array = ["Jugar de Nuevo", "Play Again", "Wiederspielen", "Jogar novamente"];
 		private static var _toMenu:Array = ["Volver al Menú", "Back to Menu", "Zurück zum Menü", "Voltar ao Menu"];
 		private static var _myWeb:Array = ["Mi Web", "My Website", "Meine Website", "O Meu Site"];
-		private static var _youreDead:Array = ["SONASTE", "OWNED", "KAPUT", "MORTO"];
+		private static var _youreDead:Array = ["SONASTE", "OWNED", "KAPUT", "DANÇOU"];
 		private static var _youWin:Array = ["PERFECTO", "PERFECT", "PERFEKT", "PERFEITO"];
 		
 		public static function get play():String
