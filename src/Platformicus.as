@@ -4,7 +4,7 @@ package
 	import flash.events.Event;
 	import mochi.as3.MochiServices;
 	import org.flixel.*;
-	[SWF(width = "400", height = "300", backgroundColor = "#000000")]
+	[SWF(width = "800", height = "600", backgroundColor = "#000000")]
 	[Frame(factoryClass="MochiPreloader")] //Tells Flixel to use the Mochi preloader
 	
 	public class Platformicus extends FlxGame
@@ -22,7 +22,7 @@ package
 				load_state = LangSelection;
 				addEventListener(Event.ADDED_TO_STAGE, init);
 			}
-			super(game_width, game_height, load_state, 1); //新しいＦｌｘＧａｍｅオブジェクトを
+			super(game_width, game_height, load_state, Registry.EDITOR_MODE? 1: 2); //新しいＦｌｘＧａｍｅオブジェクトを
 			
 		}
 		

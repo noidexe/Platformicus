@@ -46,7 +46,7 @@ package
 			var boardID:String = o.f(0, "");
 			var playerscore:Number = Registry.soulsCollectedThisGame;
 			
-			MochiScores.showLeaderboard({boardID: boardID, score: playerscore, scoreMessage: { highscore: "Beat my highscore of ${highscore} in ${game}!", latestscore: "Hice ${score} puntos en ${game}!", gameinvite: "Come play ${game}!" }});
+			MochiScores.showLeaderboard({boardID: boardID, score: playerscore, res: "800x600", width: 700, height: 500, scoreMessage: { highscore: "Beat my highscore of ${highscore} in ${game}!", latestscore: "Hice ${score} puntos en ${game}!", gameinvite: "Come play ${game}!" }});
 			
 		}
 		

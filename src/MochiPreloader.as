@@ -15,7 +15,7 @@ package {
         public static var MAIN_CLASS:String = "Platformicus";
 
         // Substitute these for what's in the MochiAd code
-        public static var GAME_OPTIONS:Object = {id: "3fdef9e3a1caad3e", res:"400x300"};
+        public static var GAME_OPTIONS:Object = {id: "3fdef9e3a1caad3e", res:"800x600"};
 
         public function MochiPreloader() {
             super();
