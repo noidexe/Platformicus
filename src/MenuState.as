@@ -26,19 +26,23 @@ package
 			BgMenu.acceleration.y = 500;
 			add(BgMenu);
 			
-			playButton = new FlxButton(40, FlxG.height / 2 -25, GameText.play , onPlay);
+			playButton = new FlxButton(40, FlxG.height / 2 -25, GameText.play , onPlay, GameText.useEmbeddedFonts);
 			playButton.setSounds(SndButton);
 			playButton.color = 0xFF8E5195;
 			playButton.label.color = 0xFFFFFFFF;
 			playButton.scale = new FlxPoint(1.5, 1.5);
+			if (!GameText.useEmbeddedFonts) playButton.labelOffset = new FlxPoint( -1, 0);
+			playButton.label.textfieldWidth = 200;
 			playButton.visible = false;
 			add(playButton);
 			
-			devButton = new FlxButton(40, FlxG.height / 2 + 25, GameText.myWeb , onSite);
+			devButton = new FlxButton(40, FlxG.height / 2 + 25, GameText.myWeb , onSite, GameText.useEmbeddedFonts);
 			devButton.setSounds(SndButton);
 			devButton.color = playButton.color;
 			devButton.label.color = playButton.label.color;
 			devButton.scale = playButton.scale;
+			if (!GameText.useEmbeddedFonts) devButton.labelOffset = new FlxPoint( -1, 0);
+			devButton.label.textfieldWidth = 200;
 			devButton.visible = false;
 			add(devButton);
 			
