@@ -10,11 +10,15 @@ package
 		private var pickEN:FlxButton;
 		private var pickDE:FlxButton;
 		private var pickPT:FlxButton;
+		private var pickZH:FlxButton;
+		private var pickJA:FlxButton;
 				
 		[Embed(source = '../assets/flag-de.png')] private var flagDe:Class;
 		[Embed(source = '../assets/flag-en.png')] private var flagEn:Class;
 		[Embed(source = '../assets/flag-es.png')] private var flagEs:Class;
 		[Embed(source = '../assets/flag-pt.png')] private var flagPt:Class;
+		[Embed(source = '../assets/flag-zh.png')] private var flagZh:Class;
+		[Embed(source = '../assets/flag-ja.png')] private var flagJa:Class;
 		
 		[Embed(source = '../assets/button.mp3')] private var SndButton:Class;
 		
@@ -41,6 +45,16 @@ package
 			pickPT.setSounds(SndButton);
 			pickPT.loadGraphic(flagPt);
 			add(pickPT);
+			
+			pickZH = new FlxButton(FlxG.width /2 +40 , FlxG.height/2, null , onPickZH) ;
+			pickZH.setSounds(SndButton);
+			pickZH.loadGraphic(flagZh);
+			add(pickZH);
+			
+			pickJA = new FlxButton(FlxG.width / 2 -80 , FlxG.height / 2, null, onPickJA);
+			pickJA.setSounds(SndButton);
+			pickJA.loadGraphic(flagJa);
+			add(pickJA);
 			
 			FlxG.mouse.show();
 			Mouse.hide();
@@ -72,6 +86,20 @@ package
 		{
 			Registry.language = "pt";
 			pickPT.exists = false;
+			FlxG.switchState(new MenuState());
+		}
+		
+		protected function onPickZH():void
+		{
+			Registry.language = "zh";
+			pickZH.exists = false;
+			FlxG.switchState(new MenuState());
+		}
+		
+		protected function onPickJA():void
+		{
+			Registry.language = "ja";
+			pickJA.exists = true;
 			FlxG.switchState(new MenuState());
 		}
 		

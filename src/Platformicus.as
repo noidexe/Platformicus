@@ -23,7 +23,6 @@ package
 				addEventListener(Event.ADDED_TO_STAGE, init);
 			}
 			super(game_width, game_height, load_state, 1); //新しいＦｌｘＧａｍｅオブジェクトを
-			
 		}
 		
 		private function init(e:Event):void
