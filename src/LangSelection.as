@@ -4,6 +4,11 @@ package
 	import flash.ui.Mouse;
 	import org.flixel.*;
 
+	/**
+	 * Language selection screen. Sets <code>Registry.language accordingly and loads Menustate
+	 * 
+	 * @author Noid.EXE
+	 */
 	public class LangSelection extends FlxState
 	{
 		private var pickES:FlxButton;

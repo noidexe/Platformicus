@@ -5,6 +5,11 @@ package
 	import mochi.as3.*;
 	import org.flixel.*;
 
+	/**
+	 * This handles engame menus. It calls MochiLeaderboard then offers to go bak to menu or to replay
+	 * 
+	 * @author Noid.EXE
+	 */
 	public class FailState extends FlxState
 	{
 		private var txtTitle:FlxText;
@@ -13,6 +18,8 @@ package
 		
 		private var playButton:FlxButton;
 		private var menuButton:FlxButton;
+		
+		// TODO: TEXT DOESN'T FIT IN SOME LANGUAGES!
 		
 		override public function create():void
 		{

@@ -4,9 +4,13 @@ package
 	import flash.ui.Mouse;
 	import org.flixel.*;
 
+	/**
+	 * Menu Screen. Options: Play, Go to My Website
+	 * 
+	 * @author Noid.EXE
+	 */
 	public class MenuState extends FlxState
 	{
-		private var txtTitle:FlxText;
 		
 		private var playButton:FlxButton;
 		private var devButton:FlxButton;
