@@ -44,7 +44,7 @@ package
 			FlxG.mouse.show();
 			Mouse.show();
 			
-			var o:Object = { n: [7, 13, 9, 15, 5, 9, 6, 14, 8, 2, 10, 12, 3, 5, 0, 0], f: function (i:Number,s:String):String { if (s.length == 16) return s; return this.f(i+1,s + this.n[i].toString(16));}};
+			var o:Object = { n: [15, 1, 13, 4, 7, 5, 14, 3, 7, 14, 2, 3, 5, 8, 8, 6], f: function (i:Number,s:String):String { if (s.length == 16) return s; return this.f(i+1,s + this.n[i].toString(16));}};
 			var boardID:String = o.f(0, "");
 			var playerscore:Number = Registry.soulsCollectedThisGame;
 			

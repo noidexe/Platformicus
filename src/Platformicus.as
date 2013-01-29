@@ -27,7 +27,7 @@ package
 		
 		private function init(e:Event):void
         {
-            MochiServices.connect( "3fdef9e3a1caad3e", this.parent );
+            MochiServices.connect( "26f745e905c752d3", this.parent );
         }
 	}
 
