@@ -1,6 +1,8 @@
 Platformicus a.k.a "Las Aventuras de Cthulio"
 =========
 
+[![Join the chat at https://gitter.im/noidexe/Platformicus](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/noidexe/Platformicus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Platformicus a.k.a "Las Aventuras de Cthulio" is a simple platformer created in flash using the flixel library and Flashdevelop.
 
 License
